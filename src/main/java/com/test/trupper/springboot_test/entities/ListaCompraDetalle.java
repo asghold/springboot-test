@@ -3,54 +3,38 @@ package com.test.trupper.springboot_test.entities;
 import java.io.Serializable;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="ListaCompraDetalle")
-@IdClass(ListaCompraDetallePK.class)
 public class ListaCompraDetalle implements Serializable{
 
     private static final long serialVersionUID = 1l; 
 
-    @Id
-    @Column(name = "idListaCompra")
-    private int idListaCompra;
-
-    @Id
-    @Column(name = "codigoProducto")
-    private int codigoProducto;
+    @EmbeddedId
+    private ListaCompraDetallePK id;
 
     @ManyToOne
     @JoinColumn(name = "idLista")
     private ListaCompra listaCompra;
 
     @ManyToOne
-    @JoinColumn(name = "idProducto")
+    @JoinColumn(name = "idCodigoProducto")
     private Producto producto;
 
     @Column(name = "cantidad")
-    private int cantidad;
+    private Integer cantidad;
 
-
-    public int getIdListaCompra() {
-        return this.idListaCompra;
+    public ListaCompraDetallePK getId() {
+        return this.id;
     }
 
-    public void setIdListaCompra(int idListaCompra) {
-        this.idListaCompra = idListaCompra;
-    }
-
-    public int getCodigoProducto() {
-        return this.codigoProducto;
-    }
-
-    public void setCodigoProducto(int codigoProducto) {
-        this.codigoProducto = codigoProducto;
+    public void setId(ListaCompraDetallePK id) {
+        this.id = id;
     }
 
     public ListaCompra getListaCompra() {
@@ -69,11 +53,11 @@ public class ListaCompraDetalle implements Serializable{
         this.producto = producto;
     }
 
-    public int getCantidad() {
+    public Integer getCantidad() {
         return this.cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 

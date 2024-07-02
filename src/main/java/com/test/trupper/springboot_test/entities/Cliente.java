@@ -1,12 +1,10 @@
 package com.test.trupper.springboot_test.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -18,8 +16,7 @@ public class Cliente implements Serializable {
     private static final long serialVersionUID = 1l; 
     @Id
     @Column(name="idCliente")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idCliente;
+    private Integer idCliente;
 
     @Column(name="nombre")
     private String nombre;
@@ -28,15 +25,13 @@ public class Cliente implements Serializable {
     private boolean activo;
 
     @OneToMany(mappedBy = "cliente")
-    private Collection<ListaCompra> listaCompra;
+    private List<ListaCompra> listaCompras;
     
-    
-
-    public int getIdCliente() {
+    public Integer getIdCliente() {
         return this.idCliente;
     }
 
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
 
@@ -60,12 +55,13 @@ public class Cliente implements Serializable {
         this.activo = activo;
     }
 
-    public Collection<ListaCompra> getListaCompra() {
-        return this.listaCompra;
+    public List<ListaCompra> getListaCompras() {
+        return this.listaCompras;
     }
 
-    public void setListaCompra(Collection<ListaCompra> listaCompra) {
-        this.listaCompra = listaCompra;
+    public void setListaCompras(List<ListaCompra> listaCompras) {
+        this.listaCompras= listaCompras;
     }
+    
 
 }
